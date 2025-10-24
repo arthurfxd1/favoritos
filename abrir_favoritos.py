@@ -3,9 +3,9 @@ import random
 import subprocess
 import os
 
-CAMINHO_CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-PASTA_DESEJADA = "o cordeiro ajoelha-se para mamar"
-CAMINHO_BOOKMARKS = r"C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Default\Bookmarks"
+CAMINHO_CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe" // path do chrome 
+PASTA_DESEJADA = "o cordeiro ajoelha-se para mamar" // nome da pasta de favoritos
+CAMINHO_BOOKMARKS = r"C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Default\Bookmarks" // path dos favoritos do chrome
 
 def obter_favoritos():
     if not os.path.exists(CAMINHO_BOOKMARKS):
@@ -37,3 +37,4 @@ links_escolhidos = random.sample(todos_links, 8) if len(todos_links) >= 8 else t
 
 for link in links_escolhidos:
     subprocess.Popen([CAMINHO_CHROME, "--incognito", link])
+
