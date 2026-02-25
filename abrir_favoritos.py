@@ -2,10 +2,11 @@ import json
 import random
 import subprocess
 import os
+import time
 
-CAMINHO_CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe" // path do chrome 
-PASTA_DESEJADA = "o cordeiro ajoelha-se para mamar" // nome da pasta de favoritos
-CAMINHO_BOOKMARKS = r"C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Default\Bookmarks" // path dos favoritos do chrome
+CAMINHO_CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+PASTA_DESEJADA = "o cordeiro ajoelha-se para mamar"
+CAMINHO_BOOKMARKS = r"C:\Users\artpe\AppData\Local\Google\Chrome\User Data\Default\Bookmarks"
 
 def obter_favoritos():
     if not os.path.exists(CAMINHO_BOOKMARKS):
@@ -35,6 +36,13 @@ def obter_favoritos():
 todos_links = obter_favoritos()
 links_escolhidos = random.sample(todos_links, 8) if len(todos_links) >= 8 else todos_links
 
-for link in links_escolhidos:
-    subprocess.Popen([CAMINHO_CHROME, "--incognito", link])
+if links_escolhidos:
+    subprocess.Popen([CAMINHO_CHROME, "--new-window", links_escolhidos[0]])
+    time.sleep(1)
+    
+    for link in links_escolhidos[1:]:
+        subprocess.Popen([CAMINHO_CHROME, link])
 
+    print(f"Sucesso! {len(links_escolhidos)} links abertos.")
+else:
+    print("Nenhum link encontrado.")
