@@ -4,9 +4,9 @@ import subprocess
 import os
 import time
 
-CAMINHO_CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-PASTA_DESEJADA = "o cordeiro ajoelha-se para mamar"
-CAMINHO_BOOKMARKS = r"C:\Users\artpe\AppData\Local\Google\Chrome\User Data\Default\Bookmarks"
+CAMINHO_CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe" // path de instalacao do chrome
+PASTA_DESEJADA = "--" // nome da pasta
+CAMINHO_BOOKMARKS = r"C:\Users\--\AppData\Local\Google\Chrome\User Data\Default\Bookmarks" // o path dos seus bookmarks, possivelmente só alterar o nome do user já funciona
 
 def obter_favoritos():
     if not os.path.exists(CAMINHO_BOOKMARKS):
@@ -34,7 +34,7 @@ def obter_favoritos():
     return links
 
 todos_links = obter_favoritos()
-links_escolhidos = random.sample(todos_links, 8) if len(todos_links) >= 8 else todos_links
+links_escolhidos = random.sample(todos_links, 8) if len(todos_links) >= 8 else todos_links   // altere o numero de favoritos aqui
 
 if links_escolhidos:
     subprocess.Popen([CAMINHO_CHROME, "--new-window", links_escolhidos[0]])
@@ -45,4 +45,5 @@ if links_escolhidos:
 
     print(f"Sucesso! {len(links_escolhidos)} links abertos.")
 else:
+
     print("Nenhum link encontrado.")
